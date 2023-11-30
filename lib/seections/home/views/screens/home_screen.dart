@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'title': '습도',
-      'data': '46% ',
+      'data': '45% ',
     },
     {
       'title': '바람',

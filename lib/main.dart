@@ -1,19 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
-import 'package:flutter_application_1/common/widgets/text_widget/body_gray_text.dart';
-import 'package:flutter_application_1/common/widgets/text_widget/body_text.dart';
-import 'package:flutter_application_1/common/widgets/text_widget/head_text.dart';
 import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
-import 'package:flutter_application_1/seections/home/views/widgets/header_swith.dart';
-import 'common/assets/icons/common_icons.dart';
+import 'package:flutter_application_1/seections/setting/views/screens/setting_screen.dart';
 import 'firebase/firebase_options.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   firebaseInit();
   runApp(
     MaterialApp(
-      home: MyApp(),
+      initialRoute: "/home",
+      routes: {
+        "/home": (context) => const HomeScreen(),
+        "/setting": (context) => const SettingScreen(),
+      },
+      home: const MyApp(),
     ),
   );
 }
@@ -27,36 +29,28 @@ void firebaseInit() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage();
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: commonBackground,
-        appBar: AppBar(
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, context) {
+        return Scaffold(
           backgroundColor: commonBackground,
-          title: const Text('HOME'),
-          leading: const IconButton(
-            icon: Icon(
-              Icons.menu,
-              color: Colors.white,
+          appBar: AppBar(
+            backgroundColor: commonBackground,
+            title: const Text('HOME'),
+            leading: const IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: null,
             ),
-            onPressed: null,
           ),
-        ),
-        body: HomeScreen());
+          body: const HomeScreen(),
+        );
+      },
+    );
   }
 }

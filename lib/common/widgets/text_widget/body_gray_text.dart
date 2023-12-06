@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/style/common_style.dart';
 
 class BodyGrayText extends StatelessWidget {
   const BodyGrayText({super.key, required this.title});
@@ -11,7 +12,7 @@ class BodyGrayText extends StatelessWidget {
       title,
       style: const TextStyle(
         fontSize: 13,
-        color: Colors.black45,
+        color: basicTextColor,
       ),
     );
   }

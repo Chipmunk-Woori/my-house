@@ -7,10 +7,12 @@ class HeaderSwitch extends StatefulWidget {
     super.key,
     required this.isOn,
     required this.icon,
+    required this.onTap,
   });
 
   bool isOn;
   String icon;
+  VoidCallback onTap;
 
   @override
   State<HeaderSwitch> createState() => _HeaderSwitchState();
@@ -27,11 +29,7 @@ class _HeaderSwitchState extends State<HeaderSwitch> {
         ),
         BasicSwitch(
           isOn: widget.isOn,
-          onTap: (bool value) {
-            setState(() {
-              widget.isOn = !widget.isOn;
-            });
-          },
+          onTap: widget.onTap,
         ),
       ],
     );

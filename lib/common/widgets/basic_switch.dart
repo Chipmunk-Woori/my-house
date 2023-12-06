@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
 
 class BasicSwitch extends StatefulWidget {
@@ -10,7 +9,7 @@ class BasicSwitch extends StatefulWidget {
   });
 
   final bool isOn;
-  final ValueChanged<bool> onTap;
+  final VoidCallback onTap;
 
   @override
   State<BasicSwitch> createState() => _BasicSwitchState();
@@ -21,9 +20,10 @@ class _BasicSwitchState extends State<BasicSwitch> {
   Widget build(BuildContext context) {
     return CupertinoSwitch(
       value: widget.isOn,
-      onChanged: widget.onTap,
-      // trackColor: mainColor,
-      activeColor: mainColor,
+      onChanged: (value) {
+        widget.onTap();
+      },
+      activeColor: pointColor,
     );
   }
 }

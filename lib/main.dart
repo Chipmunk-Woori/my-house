@@ -1,19 +1,24 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
+import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
+import 'package:flutter_application_1/seections/lamp/get_x/lamp_logic.dart';
+import 'package:flutter_application_1/seections/lamp/views/screens/lamp_screen.dart';
 import 'package:flutter_application_1/seections/setting/views/screens/setting_screen.dart';
 import 'firebase/firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 void main() {
   firebaseInit();
   runApp(
-    MaterialApp(
-      initialRoute: "/home",
+    GetMaterialApp(
+      initialRoute: 'setting',
       routes: {
-        "/home": (context) => const HomeScreen(),
-        "/setting": (context) => const SettingScreen(),
+        Routes.home.routerName: (BuildContext context) => const HomeScreen(),
+        Routes.setting.routerName: (BuildContext context) => const SettingScreen(),
+        Routes.lamp.routerName: (BuildContext context) => const LampScreen(),
       },
       home: const MyApp(),
     ),

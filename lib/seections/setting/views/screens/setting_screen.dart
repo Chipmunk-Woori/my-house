@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/style/common_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -11,10 +12,19 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
-      width: 100.w,
-      height: 100.h,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(commonPadding),
+        child: Column(
+          children: [
+            Container(
+              color: Colors.amber,
+              width: 50.w,
+              height: 50.h,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/style/common_style.dart';
 
 class BasicIcon extends StatelessWidget {
   const BasicIcon({super.key, required this.icon});
@@ -11,6 +12,7 @@ class BasicIcon extends StatelessWidget {
       icon,
       width: 25,
       height: 25,
+      color: basicIconColor,
     );
   }
 }

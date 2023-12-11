@@ -93,10 +93,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     ),
                 //   ),
                 // ),
-                Image.asset(
-                  alganzi_2,
-                  width: 180,
-                  height: 180,
+                InkWell(
+                  onTap: () {
+                    Get.to<void>(const LampScreen());
+                  },
+                  child: Image.asset(
+                    alganzi_2,
+                    width: 180,
+                    height: 180,
+                  ),
                 ),
 
                 //날씨

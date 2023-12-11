@@ -10,6 +10,5 @@ class LampLogic extends GetxController {
 
   void changeLampLight(double light) {
     state.lampLight = light.obs;
-    print('===============로직에서 state.lampLight : ${state.lampLight}');
   }
 }

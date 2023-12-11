@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter_application_1/seections/lamp/get_x/lamp_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,11 +15,11 @@ class LampScreen extends StatefulWidget {
 class _LampScreenState extends State<LampScreen> {
   final LampLogic lampLogic = Get.put(LampLogic());
   MyClipper myClipper = MyClipper();
-  Color backgroundColor = commonBackground;
+  Color backgroundColor = commonBackground; //commonBackground
   @override
   Widget build(BuildContext context) {
-    double fullWidth = MediaQuery.of(context).size.width.w;
-    double fullHeight = MediaQuery.of(context).size.height.h;
+    double fullWidth = MediaQuery.of(context).size.width;
+    double fullHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -62,13 +61,9 @@ class _LampScreenState extends State<LampScreen> {
                         shadowMaxOpacity: 0.1,
                       ),
                       infoProperties: InfoProperties(
-                        topLabelText: '${lampLogic.state.lampLight.value.floor()}',
-                        topLabelStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 50.sp,
-                        ),
                         mainLabelStyle: TextStyle(
-                          fontSize: 0.sp,
+                          fontSize: 30.sp,
+                          color: Colors.white,
                         ),
                       ),
                       size: fullWidth / 2,
@@ -78,7 +73,8 @@ class _LampScreenState extends State<LampScreen> {
                     },
                   );
                 },
-              )
+              ),
+
               // ClipPath(
               //   clipper: MyClipper(),
               //   child: Container(

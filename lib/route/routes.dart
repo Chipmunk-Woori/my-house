@@ -1,7 +1,9 @@
 enum Routes {
   home('/home'),
   setting('/setting'),
-  lamp('/lamp');
+  lamp('/lamp'),
+  signUp('/signUp'),
+  splash('/splash');
 
   const Routes(this.routerName);
 

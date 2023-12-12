@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'basicLogger.dart';
+void showToast(String msg) {
+  Fluttertoast.showToast(
+    msg: msg,
+    gravity: ToastGravity.CENTER,
+    backgroundColor: Colors.green,
+    fontSize: 20,
+    textColor: Colors.white,
+    toastLength: Toast.LENGTH_LONG,
+  );
+}
 
-Future<void> basicToast({required String msg}) {
-  logger.d(msg);
-  return Fluttertoast.showToast(
-    msg: 'testes',
-    backgroundColor: Colors.white,
-    textColor: Colors.red,
-    fontSize: 15.sp,
+void showErrorToast(String msg) {
+  Fluttertoast.showToast(
+    msg: msg,
+    gravity: ToastGravity.CENTER,
+    backgroundColor: Colors.red,
+    fontSize: 20,
+    textColor: Colors.white,
+    toastLength: Toast.LENGTH_LONG,
   );
 }

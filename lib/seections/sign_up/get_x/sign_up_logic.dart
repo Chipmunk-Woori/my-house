@@ -12,17 +12,17 @@ class SignUpLogic extends GetxController {
     try {
       firebaseAuth
           .createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: 'haha51015@naver.com',
+        password: 'test12345',
       )
           .then(
-        (value) {
-          basicToast(msg: '회원가입 완료되었습니다.');
-          logger.d('회원 가입 완료 : $value');
+        (result) {
+          showToast('회원가입 완료되었습니다.');
+          logger.d('회원 가입 완료 : $result');
         },
       );
     } catch (e) {
-      basicToast(msg: e.toString());
+      showErrorToast('회원가입 에러');
       logger.d(e);
     }
   }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
@@ -8,14 +9,17 @@ import 'package:flutter_application_1/seections/setting/views/screens/setting_sc
 import 'package:flutter_application_1/seections/sign_up/views/screens/sign_up_screen.dart';
 import 'package:flutter_application_1/seections/splash/views/screens/splash_screen.dart';
 import 'common/widgets/basicLogger.dart';
+import 'common/widgets/basic_toast.dart';
+import 'firebase/constants.dart';
 import 'firebase/firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  firebaseInit();
+  await firebaseInit();
+
   runApp(
     GetMaterialApp(
       initialRoute: 'setting',
@@ -31,11 +35,10 @@ void main() {
   );
 }
 
-void firebaseInit() async {
+Future<void> firebaseInit() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  logger.d('=======파이어베이스 초기화');
 }
 
 class MyApp extends StatelessWidget {
@@ -52,15 +55,26 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: commonBackground,
             title: const Text('HOME'),
-            leading: const IconButton(
-              icon: Icon(
+            leading: IconButton(
+              icon: const Icon(
                 Icons.menu,
                 color: Colors.white,
               ),
-              onPressed: null,
+              onPressed: () {
+                showToast('토스트 테스트');
+              },
             ),
           ),
-          body: const SplashScreen(),
+          body: StreamBuilder(
+            stream: firebaseAuth.authStateChanges(),
+            builder: (context, snapShot) {
+              if (snapShot.hasData) {
+                return const HomeScreen();
+              } else {
+                return const SplashScreen();
+              }
+            },
+          ),
         );
       },
     );

@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
-import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
+import 'package:flutter_application_1/seections/login/get_x/login_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  SignUpLogic signUpLogic = SignUpLogic();
-  String name = '';
-  String nickName = '';
+class _LoginScreenState extends State<LoginScreen> {
+  LoginLogic loginLogic = LoginLogic();
   String email = '';
   String password = '';
-
-  //todo: Firebase Auth를 사용하여 OTP(One-Time Password)를 통한 본인인증
 
   @override
   Widget build(BuildContext context) {
@@ -52,24 +48,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textFieldWidget(
                     onChange: (String value) {
                       setState(() {
-                        name = value;
-                      });
-                    },
-                    labelText: 'Name',
-                  ),
-                  margin(),
-                  textFieldWidget(
-                    onChange: (String value) {
-                      setState(() {
-                        nickName = value;
-                      });
-                    },
-                    labelText: 'NickName',
-                  ),
-                  margin(),
-                  textFieldWidget(
-                    onChange: (String value) {
-                      setState(() {
                         email = value;
                       });
                     },
@@ -90,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      signUpLogic.signUp(email, password);
+                      loginLogic.loginEmail(email, password);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -101,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 50.h,
                       width: 300.w,
                       child: Text(
-                        '회원가입',
+                        '로그인',
                         style: TextStyle(
                           fontSize: 20.sp,
                           color: Colors.white,

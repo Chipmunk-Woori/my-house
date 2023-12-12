@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
-import 'package:flutter_application_1/common/widgets/basicLogger.dart';
-import 'package:flutter_application_1/common/widgets/basic_toast.dart';
+import 'package:flutter_application_1/seections/login/views/screens/login_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/views/screens/sign_up_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -56,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               InkWell(
                 onTap: () {
-                  basicToast(msg: 'test');
+                  Get.to<void>(const LoginScreen());
                 },
                 child: Container(
                   decoration: BoxDecoration(

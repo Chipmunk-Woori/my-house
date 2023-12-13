@@ -44,6 +44,8 @@ dependencies:
   firebase_core_platform_interface: ^5.0.0
   fluttertoast: ^8.2.4
   logger: ^2.0.2+1
+  storage_manager: ^0.2.5
+  flutter_secure_storage: ^8.0.0
 
 
 dev_dependencies:

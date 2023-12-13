@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  LoginLogic loginLogic = LoginLogic();
+  final LoginLogic loginLogic = Get.put(LoginLogic());
   String email = '';
   String password = '';
 

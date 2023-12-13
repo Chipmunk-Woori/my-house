@@ -12,7 +12,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  SignUpLogic signUpLogic = SignUpLogic();
+  final SignUpLogic signUpLogic = Get.put(SignUpLogic());
   String name = '';
   String nickName = '';
   String email = '';

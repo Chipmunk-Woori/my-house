@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         nickname: nickname,
                       );
 
-                      Get.to<void>(const LoginScreen());
+                      Get.to<void>(() => const LoginScreen());
                     },
                     child: Container(
                       decoration: BoxDecoration(

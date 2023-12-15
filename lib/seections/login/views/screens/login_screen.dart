@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
 import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
 import 'package:flutter_application_1/seections/login/get_x/login_logic.dart';
+import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final LoginLogic loginLogic = Get.put(LoginLogic());
+  final SignUpLogic signUpLogic = Get.put(SignUpLogic());
   String email = '';
   String password = '';
 
@@ -70,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   InkWell(
                     onTap: () {
                       loginLogic.loginEmail(email, password);
-                      Get.to<void>(const HomeScreen());
+                      Get.to<void>(() => const HomeScreen());
                     },
                     child: Container(
                       decoration: BoxDecoration(

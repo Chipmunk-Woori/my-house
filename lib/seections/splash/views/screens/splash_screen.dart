@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               InkWell(
                 onTap: () {
-                  Get.to<void>(const SignUpScreen());
+                  Get.to<void>(() => const SignUpScreen());
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to<void>(const LoginScreen());
+                  Get.to<void>(() => const LoginScreen());
                 },
                 child: Container(
                   decoration: BoxDecoration(

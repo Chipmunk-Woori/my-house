@@ -44,9 +44,9 @@ Future<void> firebaseInit() async {
 Future<void> isUser() async {
   Future<String?> uid = storageManager.read(StorageManagerKey.uid.key);
   if (uid != null && uid != '') {
-    Get.to<void>(const HomeScreen());
+    Get.to<void>(() => const HomeScreen());
   } else {
-    Get.to<void>(const SplashScreen());
+    Get.to<void>(() => const SplashScreen());
   }
 }
 
@@ -78,7 +78,6 @@ class MyApp extends StatelessWidget {
           body: StreamBuilder(
             stream: firebaseAuth.authStateChanges(),
             builder: (context, snapShot) {
-              logger.d('=== main 에서 snapShot 값 : $snapShot');
               if (snapShot.hasData) {
                 return const HomeScreen();
               } else {

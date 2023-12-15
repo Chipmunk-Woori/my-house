@@ -14,8 +14,8 @@ class StorageManager {
   final IOSOptions _iOptions = const IOSOptions();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
-  Future<void> write(String key, String value) {
-    return _storage.write(
+  Future<void> write(String key, String value) async {
+    return await _storage.write(
       key: key,
       value: value,
       iOptions: _iOptions,
@@ -23,8 +23,8 @@ class StorageManager {
     );
   }
 
-  Future<String?> read(String key) {
-    return _storage.read(
+  Future<String?> read(String key) async {
+    return await _storage.read(
       key: key,
       iOptions: _iOptions,
       aOptions: _aOptions,

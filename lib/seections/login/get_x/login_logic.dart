@@ -29,15 +29,15 @@ class LoginLogic extends GetxController {
             String uid = result.user?.uid ?? '';
 
             //유저 정보 로컬스토리지에 저장
-            storageManager.write(
+            await storageManager.write(
               StorageManagerKey.refreshToken.key,
               refreshToken,
             );
-            storageManager.write(
+            await storageManager.write(
               StorageManagerKey.loginStatus.key,
               'true',
             );
-            storageManager.write(
+            await storageManager.write(
               StorageManagerKey.uid.key,
               uid,
             );
@@ -70,7 +70,7 @@ class LoginLogic extends GetxController {
     try {
       firebaseAuth.signOut();
       showToast('로그아웃했습니다.');
-      Get.to<void>(const SplashScreen());
+      Get.to<void>(() => const SplashScreen());
       //todo 로컬스토리지 전체 삭제
     } catch (e) {
       logger.d(e);

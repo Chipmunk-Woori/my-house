@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // ),
                 InkWell(
                   onTap: () {
-                    Get.to<void>(const LampScreen());
+                    Get.to<void>(() => const LampScreen());
                   },
                   child: Image.asset(
                     alganzi_2,
@@ -213,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Flexible(
                         child: InkWell(
                           onTap: () {
-                            Get.to<void>(const LampScreen());
+                            Get.to<void>(() => const LampScreen());
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -336,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Expanded(
                                 child: InkWell(
                                   onTap: () {
-                                    Get.to<void>(const LampScreen());
+                                    Get.to<void>(() => const LampScreen());
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(

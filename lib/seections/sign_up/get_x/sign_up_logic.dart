@@ -26,10 +26,6 @@ class SignUpLogic extends GetxController {
       )
           .then(
         (result) async {
-          String name = 'woori';
-          String email = 'haha51015@naver.com';
-          String nickname = 'testNickname';
-
           logger.d('=== 회원가입 성공 === user 정보 : ${result.user}');
           if (result.user?.uid != null) {
             result.user?.updateDisplayName(name);
@@ -47,15 +43,15 @@ class SignUpLogic extends GetxController {
             await firebaseFirestore.collection('users').doc(uid).set(userData);
 
             //유저 정보 로컬스토리지에 저장
-            storageManager.write(
+            await storageManager.write(
               StorageManagerKey.refreshToken.key,
               refreshToken,
             );
-            storageManager.write(
+            await storageManager.write(
               StorageManagerKey.loginStatus.key,
               'true',
             );
-            storageManager.write(
+            await storageManager.write(
               StorageManagerKey.user.key,
               jsonEncode(userData),
             );
@@ -69,5 +65,23 @@ class SignUpLogic extends GetxController {
       showErrorToast('회원가입 에러');
       logger.d(e);
     }
+  }
+
+  void testStorage() async {
+    String? uid = await storageManager.read(StorageManagerKey.user.key);
+
+    String name = 'woori';
+    String nickname = 'testNickname';
+    String email = 'haha51015@naver.com';
+
+    //회원가입 과정에서 입력한 유저 정보
+    Map<String, String> userData = {
+      'name': name,
+      'nickname': nickname,
+      'email': email,
+    };
+
+    //유저 정보 FireStore에 저장
+    await firebaseFirestore.collection('users').doc(uid).set(userData);
   }
 }

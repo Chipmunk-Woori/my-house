@@ -1,7 +1,10 @@
 enum StorageManagerKey {
   accessToken('accessToken'),
+  refreshToken('refreshToken'),
   pushToken('pushToken'),
-  uid('uid');
+  loginStatus('loginStatus'), //true/false
+  uid('uid'),
+  user('user');
 
   const StorageManagerKey(this.key);
 

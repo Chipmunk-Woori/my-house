@@ -8,7 +8,7 @@ void showToast(String msg) {
     backgroundColor: Colors.green,
     fontSize: 20,
     textColor: Colors.white,
-    toastLength: Toast.LENGTH_LONG,
+    toastLength: Toast.LENGTH_SHORT,
   );
 }
 
@@ -19,6 +19,6 @@ void showErrorToast(String msg) {
     backgroundColor: Colors.red,
     fontSize: 20,
     textColor: Colors.white,
-    toastLength: Toast.LENGTH_LONG,
+    toastLength: Toast.LENGTH_SHORT,
   );
 }

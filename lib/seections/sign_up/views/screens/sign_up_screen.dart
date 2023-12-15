@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
+import 'package:flutter_application_1/seections/login/views/screens/login_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final SignUpLogic signUpLogic = Get.put(SignUpLogic());
   String name = '';
-  String nickName = '';
+  String nickname = '';
   String email = '';
   String password = '';
 
@@ -61,10 +62,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textFieldWidget(
                     onChange: (String value) {
                       setState(() {
-                        nickName = value;
+                        nickname = value;
                       });
                     },
-                    labelText: 'NickName',
+                    labelText: 'nickname',
                   ),
                   margin(),
                   textFieldWidget(
@@ -90,7 +91,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      signUpLogic.signUp(email, password);
+                      signUpLogic.signUp(
+                        email: email,
+                        password: password,
+                        name: name,
+                        nickname: nickname,
+                      );
+
+                      Get.to<void>(const LoginScreen());
                     },
                     child: Container(
                       decoration: BoxDecoration(

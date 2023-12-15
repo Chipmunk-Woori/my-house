@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/enum/storage_manager_key.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
 import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_application_1/seections/login/get_x/login_logic.dart';
 import 'package:flutter_application_1/seections/setting/views/screens/setting_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/views/screens/sign_up_screen.dart';
 import 'package:flutter_application_1/seections/splash/views/screens/splash_screen.dart';
+import 'common/widgets/basic_logger.dart';
 import 'common/widgets/basic_toast.dart';
 import 'firebase/constants.dart';
 import 'firebase/firebase_options.dart';
@@ -39,6 +41,15 @@ Future<void> firebaseInit() async {
   );
 }
 
+Future<void> isUser() async {
+  Future<String?> uid = storageManager.read(StorageManagerKey.uid.key);
+  if (uid != null && uid != '') {
+    Get.to<void>(const HomeScreen());
+  } else {
+    Get.to<void>(const SplashScreen());
+  }
+}
+
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   final LoginLogic loginLogic = Get.put(LoginLogic());
@@ -53,14 +64,13 @@ class MyApp extends StatelessWidget {
           backgroundColor: commonBackground,
           appBar: AppBar(
             backgroundColor: commonBackground,
-            title: const Text('HOME'),
+            // title: const Text('HOME'),
             leading: IconButton(
               icon: const Icon(
                 Icons.menu,
                 color: Colors.white,
               ),
               onPressed: () {
-                // showToast('토스트 테스트');
                 loginLogic.signOut();
               },
             ),
@@ -68,6 +78,7 @@ class MyApp extends StatelessWidget {
           body: StreamBuilder(
             stream: firebaseAuth.authStateChanges(),
             builder: (context, snapShot) {
+              logger.d('=== main 에서 snapShot 값 : $snapShot');
               if (snapShot.hasData) {
                 return const HomeScreen();
               } else {

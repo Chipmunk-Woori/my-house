@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_application_1/common/enum/storage_manager_key.dart';
 import 'package:flutter_application_1/common/widgets/basic_toast.dart';
 import 'package:flutter_application_1/firebase/constants.dart';
-import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
 import 'package:flutter_application_1/seections/login/views/screens/login_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_state.dart';
 import 'package:get/get.dart';
@@ -61,6 +60,7 @@ class SignUpLogic extends GetxController {
             );
 
             showToast('회원가입 완료되었습니다.');
+            Get.to<void>(() => const LoginScreen());
             logger.d('회원 가입 완료 : $result');
           }
         },

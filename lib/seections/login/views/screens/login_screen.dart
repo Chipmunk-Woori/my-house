@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
 import 'package:flutter_application_1/common/widgets/basic_button.dart';
-import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
 import 'package:flutter_application_1/seections/login/get_x/login_logic.dart';
 import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -74,7 +73,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     title: 'Log In',
                     onTap: () {
                       loginLogic.loginEmail(email, password);
-                      Get.to<void>(() => const HomeScreen());
                     },
                   ),
                   SizedBox(

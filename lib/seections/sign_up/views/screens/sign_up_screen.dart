@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
 import 'package:flutter_application_1/common/widgets/basic_button.dart';
-import 'package:flutter_application_1/seections/login/views/screens/login_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -99,8 +98,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         name: name,
                         nickname: nickname,
                       );
-
-                      Get.to<void>(() => const LoginScreen());
                     },
                   ),
                   SizedBox(

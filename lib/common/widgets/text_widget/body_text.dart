@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyText extends StatelessWidget {
   const BodyText({super.key, required this.title});
@@ -10,8 +11,8 @@ class BodyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
-        fontSize: 13,
+      style: TextStyle(
+        fontSize: 17.sp,
         color: basicTextColor,
       ),
     );

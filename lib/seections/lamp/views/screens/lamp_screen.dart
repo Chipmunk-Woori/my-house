@@ -1,3 +1,7 @@
+import 'package:flutter_application_1/common/widgets/basic_logger.dart';
+import 'package:flutter_application_1/common/widgets/text_widget/body_gray_text.dart';
+import 'package:flutter_application_1/common/widgets/text_widget/body_text.dart';
+import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
 import 'package:flutter_application_1/seections/lamp/get_x/lamp_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,21 +20,32 @@ class _LampScreenState extends State<LampScreen> {
   final LampLogic lampLogic = Get.put(LampLogic());
   MyClipper myClipper = MyClipper();
   Color backgroundColor = commonBackground; //commonBackground
+  List<dynamic> todo = [
+    {'done': false, 'title': '설거지 하기'},
+    {'done': true, 'title': '성검전설 보기'},
+    {'done': false, 'title': '잠옷 빨래하기'},
+    {'done': false, 'title': '감기약 먹기'},
+    {'done': false, 'title': '설거지 하기'},
+    {'done': true, 'title': '성검전설 보기'},
+    {'done': false, 'title': '잠옷 빨래하기'},
+    {'done': false, 'title': '감기약 먹기'},
+    {'done': false, 'title': '설거지 하기'},
+    {'done': true, 'title': '성검전설 보기'},
+    {'done': false, 'title': '잠옷 빨래하기'},
+    {'done': false, 'title': '감기약 먹기'},
+  ];
   @override
   Widget build(BuildContext context) {
     double fullWidth = MediaQuery.of(context).size.width;
-    double fullHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: commonBackground,
       appBar: AppBar(
         backgroundColor: backgroundColor,
       ),
       body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Container(
-          width: fullWidth,
-          height: fullHeight,
-          color: backgroundColor,
+        child: Padding(
+          padding: EdgeInsets.all(commonPadding),
           child: Column(
             children: [
               const SizedBox(
@@ -44,19 +59,20 @@ class _LampScreenState extends State<LampScreen> {
                     initialValue: lampLogic.state.lampLight.value,
                     appearance: CircularSliderAppearance(
                       spinnerDuration: 10,
-                      // startAngle: 180,
-                      // angleRange: 180,
+                      startAngle: 90,
+                      angleRange: 360,
                       customWidths: CustomSliderWidths(
                         trackWidth: 2,
-                        progressBarWidth: 20,
+                        progressBarWidth: 10,
                         handlerSize: 5,
                         shadowWidth: 40,
                       ),
                       customColors: CustomSliderColors(
-                        progressBarColors: circularSliderColor,
+                        // progressBarColors: circularSliderColor,
+                        progressBarColor: Colors.white,
                         dotColor: Colors.white,
                         trackColor: Colors.white,
-                        shadowColor: Color.fromARGB(111, 255, 255, 255),
+                        shadowColor: Colors.white,
                         shadowStep: 20,
                         shadowMaxOpacity: 0.1,
                       ),
@@ -74,15 +90,47 @@ class _LampScreenState extends State<LampScreen> {
                   );
                 },
               ),
-
-              // ClipPath(
-              //   clipper: MyClipper(),
-              //   child: Container(
-              //     width: fullWidth,
-              //     height: fullHeight / 2,
-              //     color: pointColor,
-              //   ),
-              // )
+              const SizedBox(
+                height: 50,
+              ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                itemCount: todo.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return CheckboxListTile(
+                    visualDensity: VisualDensity(horizontal: 0, vertical: 3),
+                    side: const BorderSide(
+                      color: Colors.white,
+                    ),
+                    activeColor: Colors.white,
+                    checkColor: Colors.black,
+                    controlAffinity: ListTileControlAffinity.leading,
+                    title: BodyText(
+                      title: todo[index]['title'],
+                    ),
+                    value: todo[index]['done'],
+                    onChanged: (value) {
+                      setState(() {
+                        todo[index]['done'] = value;
+                      });
+                    },
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(const HomeScreen());
+                },
+                child: const Text(
+                  'homeScreen',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),

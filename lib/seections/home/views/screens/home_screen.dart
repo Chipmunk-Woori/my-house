@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  Get.to<void>(() => const LampScreen());
+                  Get.to<void>(() => LampScreen());
                 },
                 child: Image.asset(
                   alganzi_2,

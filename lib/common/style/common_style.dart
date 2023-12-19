@@ -20,18 +20,8 @@ const Color pinkAcc = Color(0xFFB31D57);
 const Color ghostHornColor = Color(0xFFF26176);
 const Color ghostColor = Color(0xFFF2F2F2);
 
-const List<Color> gradientColorsSample_1 = [
-  Color(0xFFB33ab4),
-  Color(0xFFfd1d1d),
-  Color(0xFFfcb045),
-];
-const List<Color> gradientColorsSample_2 = [
-  Color(0xFF12c2e9),
-  Color(0xFFc471ed),
-  Color(0xFFf64f59),
-];
 const List<Color> circularSliderColor = [
-  Color.fromARGB(255, 127, 10, 16),
-  Color(0xFFf11924),
-  Color.fromARGB(255, 161, 17, 24),
+  Color(0xFFF26176),
+  Color(0xFFE85B76),
+  Color(0xFFF26176),
 ];

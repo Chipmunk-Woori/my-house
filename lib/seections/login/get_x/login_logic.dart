@@ -50,6 +50,8 @@ class LoginLogic extends GetxController {
                 );
               },
             );
+
+            Get.to<void>(() => const HomeScreen());
           } else {
             logger.d('다시 로그인해주세요.');
             showToast('다시 로그인해주세요.');

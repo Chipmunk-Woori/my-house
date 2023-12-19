@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
+import 'package:flutter_application_1/common/widgets/basic_button.dart';
 import 'package:flutter_application_1/seections/home/views/screens/home_screen.dart';
 import 'package:flutter_application_1/seections/login/get_x/login_logic.dart';
 import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         email = value;
                       });
                     },
-                    labelText: 'email',
+                    labelText: 'Email',
                   ),
                   margin(),
                   textFieldWidget(
@@ -69,30 +70,15 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Column(
                 children: [
-                  InkWell(
+                  BasicButton(
+                    title: 'Log In',
                     onTap: () {
                       loginLogic.loginEmail(email, password);
                       Get.to<void>(() => const HomeScreen());
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: contentBoxColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      alignment: Alignment.center,
-                      height: 50.h,
-                      width: 300.w,
-                      child: Text(
-                        '로그인',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 40.h,
                   ),
                 ],
               ),
@@ -108,36 +94,28 @@ class _LoginScreenState extends State<LoginScreen> {
     required String labelText,
     double? width,
   }) {
-    Color white = Colors.white;
-    Color grey = Colors.grey;
     return SizedBox(
       width: width ?? 300.w,
       child: TextField(
-        style: const TextStyle(
+        style: TextStyle(
           height: 2,
-          color: Colors.white,
+          color: ghostColor,
+          fontSize: body_1.sp,
         ),
         onChanged: (value) {
           onChange(value);
         },
         decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: white,
-            ),
-            borderRadius: BorderRadius.circular(15.0),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: ghostColor),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: grey,
-            ),
-            borderRadius: BorderRadius.circular(15.0),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: grey),
           ),
           labelText: labelText,
           labelStyle: TextStyle(
-            color: grey,
+            color: ghostColor,
+            fontSize: body_1.sp,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),

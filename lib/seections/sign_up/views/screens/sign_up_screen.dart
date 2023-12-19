@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
+import 'package:flutter_application_1/common/widgets/basic_button.dart';
 import 'package:flutter_application_1/seections/login/views/screens/login_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/get_x/sign_up_logic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,7 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         nickname = value;
                       });
                     },
-                    labelText: 'nickname',
+                    labelText: 'Nickname',
                   ),
                   margin(),
                   textFieldWidget(
@@ -74,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         email = value;
                       });
                     },
-                    labelText: 'email',
+                    labelText: 'Email',
                   ),
                   margin(),
                   textFieldWidget(
@@ -89,7 +90,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Column(
                 children: [
-                  InkWell(
+                  BasicButton(
+                    title: 'Sign Up',
                     onTap: () {
                       signUpLogic.signUp(
                         email: email,
@@ -100,25 +102,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       Get.to<void>(() => const LoginScreen());
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: contentBoxColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      alignment: Alignment.center,
-                      height: 50.h,
-                      width: 300.w,
-                      child: Text(
-                        '회원가입',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 40.h,
                   ),
                 ],
               ),
@@ -134,36 +120,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
     required String labelText,
     double? width,
   }) {
-    Color white = Colors.white;
-    Color grey = Colors.grey;
     return SizedBox(
       width: width ?? 300.w,
       child: TextField(
-        style: const TextStyle(
+        style: TextStyle(
           height: 2,
-          color: Colors.white,
+          color: ghostColor,
+          fontSize: body_1.sp,
         ),
         onChanged: (value) {
           onChange(value);
         },
         decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: white,
-            ),
-            borderRadius: BorderRadius.circular(15.0),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: ghostColor),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: grey,
-            ),
-            borderRadius: BorderRadius.circular(15.0),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: grey),
           ),
           labelText: labelText,
           labelStyle: TextStyle(
-            color: grey,
+            color: ghostColor,
+            fontSize: body_1.sp,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),

@@ -52,6 +52,10 @@ class SignUpLogic extends GetxController {
               'true',
             );
             await storageManager.write(
+              StorageManagerKey.uid.key,
+              uid,
+            );
+            await storageManager.write(
               StorageManagerKey.user.key,
               jsonEncode(userData),
             );

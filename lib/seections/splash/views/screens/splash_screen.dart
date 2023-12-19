@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/assets/images/common_images.dart';
 import 'package:flutter_application_1/common/style/common_style.dart';
+import 'package:flutter_application_1/common/widgets/basic_button.dart';
 import 'package:flutter_application_1/seections/login/views/screens/login_screen.dart';
 import 'package:flutter_application_1/seections/sign_up/views/screens/sign_up_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,53 +27,52 @@ class _SplashScreenState extends State<SplashScreen> {
         child: SizedBox(
           width: fullWidth,
           height: fullHeight,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              InkWell(
-                onTap: () {
-                  Get.to<void>(() => const SignUpScreen());
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: contentBoxColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  height: 70,
-                  width: fullWidth * 0.7,
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.white,
+              Positioned(
+                top: 260.h,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    BasicButton(
+                      title: 'Sign Up',
+                      onTap: () {
+                        Get.to<void>(() => const SignUpScreen());
+                      },
                     ),
-                  ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    BasicButton(
+                      title: 'Log In',
+                      onTap: () {
+                        Get.to<void>(() => const LoginScreen());
+                      },
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.to<void>(() => const LoginScreen());
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: contentBoxColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  height: 70,
-                  width: fullWidth * 0.7,
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.white,
+              Positioned(
+                top: 214.h,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      ghostHorn,
+                      width: 60.w,
+                      height: 60.w,
                     ),
-                  ),
+                    Image.asset(
+                      ghostHorn,
+                      width: 60.w,
+                      height: 60.w,
+                    ),
+                    Image.asset(
+                      ghostHorn,
+                      width: 60.w,
+                      height: 60.w,
+                    ),
+                  ],
                 ),
               ),
             ],

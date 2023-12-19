@@ -68,233 +68,258 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Container(
-          // decoration: BoxDecoration(
-          //   image: DecorationImage(
-          //     fit: BoxFit.cover,
-          //     image: AssetImage(redCloud), // 배경 이미지
-          //   ),
-          // ),
-          child: Padding(
-            padding: EdgeInsets.all(commonPadding),
-            child: Column(
-              children: <Widget>[
-                //문구
-                // SizedBox(
-                //   width: double.maxFinite,
-                //   child: Text(
-                //     welcomeText,
-                //     style: TextStyle(
-                //       fontSize: 20.sp,
-                //       fontWeight: FontWeight.bold,
-                //       color: basicTextColor,
-                //     ),
-                //   ),
-                // ),
-                InkWell(
-                  onTap: () {
-                    Get.to<void>(() => const LampScreen());
-                  },
-                  child: Image.asset(
-                    alganzi_2,
-                    width: 180,
-                    height: 180,
-                  ),
+    return Scaffold(
+      backgroundColor: commonBackground,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(commonPadding),
+          child: Column(
+            children: <Widget>[
+              InkWell(
+                onTap: () {
+                  Get.to<void>(() => const LampScreen());
+                },
+                child: Image.asset(
+                  alganzi_2,
+                  width: 180,
+                  height: 180,
                 ),
+              ),
 
-                //날씨
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: commonPadding, vertical: 12.h),
-                  width: double.maxFinite,
-                  height: 155.h,
-                  decoration: BoxDecoration(
-                    color: contentBoxColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                todayDate,
-                                style: const TextStyle(
-                                  color: basicTextColor,
-                                ),
-                              ),
-                              Text(
-                                location,
-                                style: const TextStyle(
-                                  color: basicTextColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              todayWeather,
-                              style: TextStyle(
-                                fontSize: 23.sp,
-                                fontWeight: FontWeight.bold,
+              //날씨
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: commonPadding, vertical: 12.h),
+                width: double.maxFinite,
+                height: 155.h,
+                decoration: BoxDecoration(
+                  color: contentBoxColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              todayDate,
+                              style: const TextStyle(
                                 color: basicTextColor,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 45.h,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: detailedWeather.length,
-                          shrinkWrap: true,
-                          itemBuilder: (
-                            BuildContext context,
-                            int index,
-                          ) {
-                            return SizedBox(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    alignment: Alignment.topLeft,
-                                    margin: EdgeInsets.only(right: 40.w),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${detailedWeather[index]['data']}',
-                                          style: TextStyle(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: basicTextColor,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 3.h,
-                                        ),
-                                        Text(
-                                          '${detailedWeather[index]['title']}',
-                                          style: TextStyle(
-                                            fontSize: 14.sp,
-                                            color: basicTextColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                            Text(
+                              location,
+                              style: const TextStyle(
+                                color: basicTextColor,
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: commonMargin,
-                ),
-
-                //스위치들
-                SizedBox(
-                  height: 300.h,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to<void>(() => const LampScreen());
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: commonPadding,
-                              vertical: commonPadding,
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            todayWeather,
+                            style: TextStyle(
+                              fontSize: 23.sp,
+                              fontWeight: FontWeight.bold,
+                              color: basicTextColor,
                             ),
-                            // height: double.maxFinite,
-                            decoration: BoxDecoration(
-                              color: contentBoxColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Wrap(
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 45.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: detailedWeather.length,
+                        shrinkWrap: true,
+                        itemBuilder: (
+                          BuildContext context,
+                          int index,
+                        ) {
+                          return SizedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Obx(() {
-                                      //냉장고
-                                      return HeaderSwitch(
-                                        isOn: refrigeratorLogic.state.refrigeratorOn.value,
-                                        icon: fridge,
-                                        onTap: refrigeratorLogic.changeRefriOn,
-                                      );
-                                    }),
-                                    SizedBox(height: 43.h),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        const HeadText(
-                                          title: '냉장고',
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  margin: EdgeInsets.only(right: 40.w),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${detailedWeather[index]['data']}',
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.bold,
+                                          color: basicTextColor,
                                         ),
-                                        SizedBox(height: 24.h),
-                                        SizedBox(
-                                          height: 150.h,
-                                          child: ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            itemCount: refrigeratorContents.length,
-                                            itemBuilder: (BuildContext context, int index) {
-                                              return Column(
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      BodyText(
-                                                        title: refrigeratorContents[index]['name'],
-                                                      ),
-                                                      BodyGrayText(
-                                                        title: refrigeratorContents[index]['acount'],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  index != refrigeratorContents.length - 1
-                                                      ? SizedBox(
-                                                          height: 20.h,
-                                                        )
-                                                      : const SizedBox(),
-                                                ],
-                                              );
-                                            },
-                                          ),
+                                      ),
+                                      SizedBox(
+                                        height: 3.h,
+                                      ),
+                                      Text(
+                                        '${detailedWeather[index]['title']}',
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          color: basicTextColor,
                                         ),
-                                      ],
-                                    ),
-                                  ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: commonMargin,
+              ),
+
+              //스위치들
+              SizedBox(
+                height: 300.h,
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: InkWell(
+                        onTap: () {
+                          Get.to<void>(() => const LampScreen());
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: commonPadding,
+                            vertical: commonPadding,
+                          ),
+                          // height: double.maxFinite,
+                          decoration: BoxDecoration(
+                            color: contentBoxColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Wrap(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Obx(() {
+                                    //냉장고
+                                    return HeaderSwitch(
+                                      isOn: refrigeratorLogic.state.refrigeratorOn.value,
+                                      icon: fridge,
+                                      onTap: refrigeratorLogic.changeRefriOn,
+                                    );
+                                  }),
+                                  SizedBox(height: 43.h),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const HeadText(
+                                        title: '냉장고',
+                                      ),
+                                      SizedBox(height: 24.h),
+                                      SizedBox(
+                                        height: 150.h,
+                                        child: ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          shrinkWrap: true,
+                                          itemCount: refrigeratorContents.length,
+                                          itemBuilder: (BuildContext context, int index) {
+                                            return Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    BodyText(
+                                                      title: refrigeratorContents[index]['name'],
+                                                    ),
+                                                    BodyGrayText(
+                                                      title: refrigeratorContents[index]['acount'],
+                                                    ),
+                                                  ],
+                                                ),
+                                                index != refrigeratorContents.length - 1
+                                                    ? SizedBox(
+                                                        height: 20.h,
+                                                      )
+                                                    : const SizedBox(),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 25,
-                      ),
-                      Flexible(
-                        child: SizedBox(
-                          height: double.maxFinite,
-                          child: Column(
-                            children: [
-                              //공기
-                              Expanded(
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        height: double.maxFinite,
+                        child: Column(
+                          children: [
+                            //공기
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: commonPadding,
+                                  vertical: commonPadding,
+                                ),
+                                alignment: Alignment.topLeft,
+                                decoration: BoxDecoration(
+                                  color: contentBoxColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Obx(() {
+                                      //공기
+                                      return HeaderSwitch(
+                                        isOn: airLogic.state.airOn.value,
+                                        icon: wind,
+                                        onTap: airLogic.changeAirOn,
+                                      );
+                                    }),
+                                    Text(
+                                      'Air\nTemperature',
+                                      style: TextStyle(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: basicTextColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: commonMargin,
+                            ),
+                            //스마트 조명
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to<void>(() => const LampScreen());
+                                },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: commonPadding,
@@ -310,15 +335,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Obx(() {
-                                        //공기
+                                        //조명
                                         return HeaderSwitch(
-                                          isOn: airLogic.state.airOn.value,
-                                          icon: wind,
-                                          onTap: airLogic.changeAirOn,
+                                          isOn: lampLogic.state.lampOn.value,
+                                          icon: ceiling_lamp,
+                                          onTap: lampLogic.changeLampOn,
                                         );
                                       }),
                                       Text(
-                                        'Air\nTemperature',
+                                        'Smart\nlamp',
                                         style: TextStyle(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.bold,
@@ -329,62 +354,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: commonMargin,
-                              ),
-                              //스마트 조명
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.to<void>(() => const LampScreen());
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: commonPadding,
-                                      vertical: commonPadding,
-                                    ),
-                                    alignment: Alignment.topLeft,
-                                    decoration: BoxDecoration(
-                                      color: contentBoxColor,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Obx(() {
-                                          //조명
-                                          return HeaderSwitch(
-                                            isOn: lampLogic.state.lampOn.value,
-                                            icon: ceiling_lamp,
-                                            onTap: lampLogic.changeLampOn,
-                                          );
-                                        }),
-                                        Text(
-                                          'Smart\nlamp',
-                                          style: TextStyle(
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: basicTextColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 100,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+            ],
           ),
         ),
       ),

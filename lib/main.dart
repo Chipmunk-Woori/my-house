@@ -43,8 +43,8 @@ Future<void> firebaseInit() async {
 
 Future<void> isUser() async {
   Future<String?> uid = storageManager.read(StorageManagerKey.uid.key);
-  if (uid != null && uid != '') {
-    Get.to<void>(() => const HomeScreen());
+  if (uid.toString() != '') {
+    Get.to<void>(() => const LampScreen());
   } else {
     Get.to<void>(() => const SplashScreen());
   }
@@ -62,24 +62,26 @@ class MyApp extends StatelessWidget {
       builder: (_, context) {
         return Scaffold(
           backgroundColor: commonBackground,
-          appBar: AppBar(
-            backgroundColor: commonBackground,
-            // title: const Text('HOME'),
-            leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                loginLogic.signOut();
-              },
-            ),
-          ),
+          // appBar: AppBar(
+          //   backgroundColor: commonBackground,
+          // leading: IconButton(
+          //   icon: const Icon(
+          //     Icons.menu,
+          //     color: Colors.white,
+          //   ),
+          //   onPressed: () {
+          //     loginLogic.signOut();
+          //   },
+          // ),
+          // ),
           body: StreamBuilder(
             stream: firebaseAuth.authStateChanges(),
             builder: (context, snapShot) {
               if (snapShot.hasData) {
-                return const HomeScreen();
+                return const LampScreen();
+              } else if (snapShot.hasError) {
+                showToast('firebase 에러');
+                return const SplashScreen();
               } else {
                 return const SplashScreen();
               }

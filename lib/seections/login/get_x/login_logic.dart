@@ -44,7 +44,6 @@ class LoginLogic extends GetxController {
 
             await firebaseFirestore.collection('users').doc(uid).get().then(
               (value) {
-                logger.d('=== 로그인 후 uid 값 확인 === $value');
                 storageManager.write(
                   StorageManagerKey.user.key,
                   jsonEncode(value),
@@ -53,26 +52,29 @@ class LoginLogic extends GetxController {
             );
           } else {
             logger.d('다시 로그인해주세요.');
-            // Get.defaultDialog(
-            //   title: '다시 로그인해주세요.',
-            //   //middleText: 'discription',
-            // );
+            showToast('다시 로그인해주세요.');
           }
         },
       );
     } catch (e) {
+      showErrorToast('로그인 에러');
       logger.d(e);
     }
   }
 
   //로그아웃
-  void signOut() {
+  void signOut() async {
     try {
-      firebaseAuth.signOut();
+      await firebaseAuth.signOut();
+      await storageManager.delete(StorageManagerKey.refreshToken.key);
+      await storageManager.delete(StorageManagerKey.loginStatus.key);
+      await storageManager.delete(StorageManagerKey.uid.key);
+      await storageManager.delete(StorageManagerKey.user.key);
+
       showToast('로그아웃했습니다.');
       Get.to<void>(() => const SplashScreen());
-      //todo 로컬스토리지 전체 삭제
     } catch (e) {
+      showErrorToast('로그아웃 에러');
       logger.d(e);
     }
   }
